@@ -1,6 +1,11 @@
 <template>
 	<div class="container">
-		<h1>Welcome!</h1>
+		<h1 class="title">Welcome!</h1>
+		<div class="card">
+			<h2>Title of card</h2>
+			<p>Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			<button class="btn">Click me</button>
+		</div>
 	</div>
 </template>
 <script>
@@ -12,14 +17,26 @@
 			css: false,
 			beforeEnter (el) {
 				console.log('beforeEnter')
-				TweenMax.set(el, {
+				var card = el.querySelector(".card");
+				var title = el.querySelector(".title");
+				TweenMax.set(title, {
 					x: '-100%'
+				})
+				TweenMax.set(card, {
+					y: '-100%'
 				})
 			},
 			enter (el, done) {
 				console.log('Enter')
-				TweenMax.to(el, 1, {
+				var card = el.querySelector(".card");
+				var title = el.querySelector(".title");
+				TweenMax.to(title, 1, {
 					x: '0%',
+					transformOrigin: '50% 50%',
+					ease: Back.easeOut
+				})
+				TweenMax.to(card, 1, {
+					y: '0%',
 					transformOrigin: '50% 50%',
 					ease: Back.easeOut
 				})
@@ -27,11 +44,19 @@
 			},
 			leave (el, done) {
 				console.log('Leave')
-				TweenMax.to(el, 1, {
+				var card = el.querySelector(".card");
+				var title = el.querySelector(".title");
+				TweenMax.to(title, 1, {
+					x: '100%',
+					transformOrigin: '50% 50%',
+					ease: Back.easeIn
+				})
+				TweenMax.to(card, 1, {
 					y: '100%',
 					transformOrigin: '50% 50%',
 					ease: Back.easeIn
 				})
+				
 				done()
 			}
 		}
@@ -44,8 +69,9 @@
 		font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
 		background: transparent;
 		color: white;
-		width: 100vw;
-		height: 100vh;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
 	}
 
 	a, a:visited {
@@ -55,8 +81,16 @@
 
 	.container {
 		padding: 60px;
-		width: 100vw;
-		height: 100vh;
+		width: 100%;
+		height: 100%;
 		background: transparent;
+	}
+
+	.card {
+		width: 33vw;
+		background: #efefef;
+		border-radius: 3px;
+		padding: 20px;
+		color: #333;
 	}
 </style>
