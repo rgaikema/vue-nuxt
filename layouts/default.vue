@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 	import Navigation from '~/components/Navigation.vue'
 
 	export default {
@@ -30,7 +31,7 @@ html {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	
+
 }
 
 *, *:before, *:after {
