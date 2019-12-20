@@ -16,7 +16,7 @@
 </template>
 
 <script>
-	import { TweenMax, Back } from 'gsap'
+	import { gsap} from 'gsap'
 
 	export default {
 		head: {
@@ -29,42 +29,46 @@
 			mode: "out-in",
 			css: false,
 			enter(el, done) {
-				console.log("Enter to Product");
-				let tl = new TimelineMax({ onComplete: done }),
+				console.log("Enter to Contact");
+				let tl = gsap.timeline({ onComplete: done }),
 					title = el.querySelector(".title"),
 					message = el.querySelector(".message");
 				tl
 					.add('start')
-					.from(title, 1, {
+					.from(title, {
+						duration: 1,
 						x: "-50%",
-						opacity: 0,
-						ease: Back.easeOut
+						autoAlpha: 0,
+						ease: "back.out(1.7)"
 					}, 'start')
 
-					.from(message, 1, {
+					.from(message, {
+						duration: 1,
 						y: "-50%",
-						opacity: 0,
-						ease: Back.easeOut
+						autoAlpha: 0,
+						ease: "back.out(1.7)"
 					}, 'start');
 			},
 			leave(el, done) {
-				console.log("leave from Product");
-				let tl = new TimelineMax({ onComplete: done }),
+				console.log("leave from Contact");
+				let tl = gsap.timeline({ onComplete: done }),
 					title = el.querySelector(".title"),
 					message = el.querySelector(".message");
 				tl
-					.to(title, 1, {
+					.to(title, {
+						duration: 1,
 						x: "100%",
 						opacity: 0,
 						transformOrigin: "50% 50%",
-						ease: Back.easeIn
+						ease: "back.in(1.7)"
 					}, 'start')
 
-					.to(message, 1, {
+					.to(message, {
+						duration: 1,
 						y: "100%",
 						opacity: 0,
 						transformOrigin: "50% 50%",
-						ease: Back.easeIn
+						ease: "back.in(1.7)"
 					}, 'start');
 			}
 		}
@@ -72,5 +76,9 @@
 </script>
 
 <style>
+
+	.message {
+		visibility: hidden;
+	}
 
 </style>
