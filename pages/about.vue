@@ -1,7 +1,7 @@
 <template>
 	<div class="section">
 	<div class="container">
-		<h1 class="title">This is the product page</h1>
+		<h1 class="title">This is the about page</h1>
 			<div class="card">
 				<header class="card-header">
 					<p class="card-header-title">Component</p>
@@ -31,61 +31,67 @@
 	</div>
 </template>
 <script>
-import { TweenMax, Back } from "gsap";
+import { gsap } from "gsap";
 
 export default {
 	head: {
-		title: "Product page",
+		title: "About page",
 		meta: [
-			{ hid: "description", name: "description", content: "Product page description" }
+			{ hid: "description", name: "description", content: "About page description" }
 		]
 	},
 	transition: {
 		mode: "out-in",
 		css: false,
 		enter(el, done) {
-			console.log("Enter to Product");
-			let tl = new TimelineMax({ onComplete: done }),
+			console.log("Enter to About");
+			let tl = gsap.timeline({ onComplete: done }),
 				title = el.querySelector(".title"),
 				card = el.querySelector(".card");
 			tl
 				.add('start')
-				.from(title, 1, {
+				.from(title, {
+					duration: 1,
 					x: "-50%",
-					opacity: 0,
-					ease: Back.easeOut
+					autoAlpha: 0,
+					ease: "back.out(1.7)"
 				}, 'start')
 
-				.from(card, 1, {
+				.from(card, {
+					duration: 1,
 					x: "-50%",
-					opacity: 0,
+					autoAlpha: 0,
 					rotation: -90,
-					ease: Back.easeOut
+					ease: "back.out(1.7)"
 				}, 'start');
 		},
 		leave(el, done) {
-		console.log("leave from Product");
-		let tl = new TimelineMax({ onComplete: done }),
+		console.log("leave from About");
+		let tl = gsap.timeline({ onComplete: done }),
 			title = el.querySelector(".title"),
 			card = el.querySelector(".card");
 		tl
-			.to(title, 1, {
+			.add('start')
+			.to(title,{
+				duration: 1,
 				x: "100%",
 				opacity: 0,
 				transformOrigin: "50% 50%",
-				ease: Back.easeIn
+				ease: "back.in(1.7)"
 			}, 'start')
 
-			.to(card, 1, {
+			.to(card, {
+				duration: 1,
 				x: "100%",
 				opacity: 0,
 				rotation: 90,
 				transformOrigin: "50% 50%",
-				ease: Back.easeIn
+				ease: "back.in(1.7)"
 			}, 'start');
 		}
   	}
 };
 </script>
 <style>
+
 </style>
